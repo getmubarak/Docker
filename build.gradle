@@ -1,0 +1,32 @@
+buildscript {
+	dependencies {
+		classpath('se.transmode.gradle:gradle-docker:1.2')
+	}
+}
+
+
+apply plugin: 'docker'
+
+
+task buildDocker(type: Docker, dependsOn: build) {
+  push = false
+  applicationName = rootProject.name
+  dockerfile = file('src/main/docker/Dockerfile')
+
+  doFirst {
+    // Rename the app jar to "app.jar" so that the Dockerfile does not require renames
+    copy {
+      from "${project.buildDir}/libs"
+      into stageDir
+      include "${rootProject.name}-${version}.jar"
+      rename("${rootProject.name}-${version}.jar", "app.jar")
+    }
+  }
+
+  doLast {
+    println "Run the Docker Container"
+    println "docker run -ti -p 8080:8080 $project.group/$applicationName:$version"
+  }
+} 
+
+buildDocker.dependsOn(build)
