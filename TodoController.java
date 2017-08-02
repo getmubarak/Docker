@@ -18,7 +18,6 @@ public class TodoController {
 	 
 	 @RequestMapping("/create")
 	 public Map<String, Object> create(Todo todo) {
-	  todo.setDate(new Date());
 	  todo = todoRepository.save(todo);
 	  Map<String, Object> dataMap = new HashMap<String, Object>();
 	  dataMap.put("message", "Booking created successfully");
