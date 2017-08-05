@@ -1,0 +1,6 @@
+sudo apt-get update
+sudo apt-get install default-jdk 
+// find out the path of your Java installation:
+sudo update-alternatives --config java 
+//replacing YOUR_PATH by the just copied path
+JAVA_HOME="YOUR_PATH"
