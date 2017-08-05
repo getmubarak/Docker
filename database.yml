@@ -1,0 +1,7 @@
+spring:
+ data:
+  mongodb:
+   database=mydb
+   host=localhost
+   port=27017
+   
