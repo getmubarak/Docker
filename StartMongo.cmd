@@ -9,3 +9,8 @@ docker run --name spring-demo-mongo --network=spring_demo_net -v /home/ubuntu/mo
 
 #get ip address
 docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)
+
+#remove network
+docker inspect spring_demo_net
+docker network disconnect -f spring_demo_net spring-demo-mongo
+docker network rm spring_demo_net
