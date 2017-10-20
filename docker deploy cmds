@@ -1,0 +1,7 @@
+docker image ls 
+
+docker tag todo:0.0.1-SNAPSHOT getmub/todo:v1  
+
+docker login
+
+docker push getmub/todo:v1 
