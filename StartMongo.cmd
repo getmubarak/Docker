@@ -2,6 +2,7 @@
 docker network ls
 
 #create network
+#bridge or overlay are the built-in network drivers.  (the default network driver is bridge)
 docker network create spring_demo_net  
 
 #start
