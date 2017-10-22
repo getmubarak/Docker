@@ -8,3 +8,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 #Test the installation.
 docker-compose --version
+
+#Couldn't connect to Docker daemon at http+unix://var/run/docker.sock 
+#Solved for me too with sudo command
+sudo su
