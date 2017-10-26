@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: mongo:latest
+    volumes:
+      - /home/ubuntu/mongo-data:/data/db
+    ports:
+      - 27017:27017
+  web:
+    image: getmub/todo:v1
+    depends_on:
+      - db
+    ports:
+      - 8090:8080
+    links:
+      - db  
