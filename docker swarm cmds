@@ -1,0 +1,19 @@
+
+docker swarm init
+
+docker stack deploy --compose-file=docker-compose.yml myapp
+
+#List of services running can be verified using 
+docker service ls
+
+#The list of containers running within the service can be seen using 
+docker service ps <id>
+
+#The service can now be scaled as
+docker service scale myapp_web=2
+
+#stream the log of service across all the containers on all hosts to your console. 
+docker service logs
+
+
+docker stack rm 
