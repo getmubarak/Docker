@@ -6,6 +6,8 @@ services:
       - /home/ubuntu/mongo-data:/data/db
     ports:
       - 27017:27017
+    networks:
+      - spring_demo_net
   web:
     image: getmub/todo:v1
     depends_on:
@@ -13,7 +15,9 @@ services:
     ports:
       - 8090:8080
     links:
-      - db  
+      - db 
+    networks:
+      - spring_demo_net
 networks:
-  back-tier:
+  spring_demo_net:
     driver: overlay
