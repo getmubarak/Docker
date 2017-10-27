@@ -1,6 +1,14 @@
 
 docker swarm init
 
+#cluster management communications
+TCP port 2377 
+#communication among nodes
+TCP and UDP port 7946  
+#overlay network traffic
+UDP port 4789  
+
+
 docker stack deploy --compose-file=docker-compose.yml myapp
 
 #List of services running can be verified using 
