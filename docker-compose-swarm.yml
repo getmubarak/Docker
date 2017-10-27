@@ -14,3 +14,6 @@ services:
       - 8090:8080
     links:
       - db  
+networks:
+  back-tier:
+    driver: overlay
