@@ -1,0 +1,82 @@
+$ docker pull ubuntu:14.04
+$ docker images
+
+Remove docker images.
+
+$ docker rmi aae2b63c4946
+
+Start a container in background
+
+$ docker run -d --name demo xiaopeng163/redis:0.1
+
+stop/remove containers
+
+Firstly, we can use --filter to filter out the containers we want to manage.
+
+$ docker ps -a --filter "status=exited"
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+c05d6d379459        centos:7            "/bin/bash -c 'while "   3 days ago          Exited (137) 11 hours ago                       test3
+8975cb01d142        centos:7            "/bin/bash -c 'while "   5 days ago          Exited (137) 3 days ago                         test2
+
+Secondly, we can use -q option to list only containers ids
+
+$ docker ps -aq --filter "status=exited"
+c05d6d379459
+8975cb01d142
+
+At last, we can batch processing these containers, like remove them all or start them all:
+
+$ docker rm $(docker ps -aq --filter "status=exited")
+c05d6d379459
+8975cb01d142
+
+
+
+Start a container in interactive mode
+
+$ docker run -i --name test3  ubuntu:14.04
+pwd
+/
+ls -l
+total 20
+drwxr-xr-x.   2 root root 4096 Nov 30 08:51 bin
+drwxr-xr-x.   2 root root    6 Apr 10  2014 boot
+drwxr-xr-x.   5 root root  360 Nov 30 09:00 dev
+drwxr-xr-x.   1 root root   62 Nov 30 09:00 etc
+drwxr-xr-x.   2 root root    6 Apr 10  2014 home
+drwxr-xr-x.  12 root root 4096 Nov 30 08:51 lib
+drwxr-xr-x.   2 root root   33 Nov 30 08:51 lib64
+drwxr-xr-x.   2 root root    6 Nov 23 01:30 media
+drwxr-xr-x.   2 root root    6 Apr 10  2014 mnt
+drwxr-xr-x.   2 root root    6 Nov 23 01:30 opt
+dr-xr-xr-x. 131 root root    0 Nov 30 09:00 proc
+drwx------.   2 root root   35 Nov 30 08:51 root
+drwxr-xr-x.   8 root root 4096 Nov 29 20:04 run
+drwxr-xr-x.   2 root root 4096 Nov 30 08:51 sbin
+drwxr-xr-x.   2 root root    6 Nov 23 01:30 srv
+dr-xr-xr-x.  13 root root    0 Sep  4 08:43 sys
+drwxrwxrwt.   2 root root    6 Nov 23 01:32 tmp
+drwxr-xr-x.  10 root root   97 Nov 30 08:51 usr
+drwxr-xr-x.  11 root root 4096 Nov 30 08:51 var
+
+ifconfig
+eth0      Link encap:Ethernet  HWaddr 02:42:ac:11:00:04
+          inet addr:172.17.0.4  Bcast:0.0.0.0  Mask:255.255.0.0
+          inet6 addr: fe80::42:acff:fe11:4/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:8 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:8 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:648 (648.0 B)  TX bytes:648 (648.0 B)
+
+lo        Link encap:Local Loopback
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:0 (0.0 B)  TX bytes:0 (0.0 B)
+
+exit
+$
