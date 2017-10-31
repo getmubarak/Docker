@@ -3,7 +3,7 @@ services:
   db:
     image: mongo:latest
     volumes:
-      - /home/ubuntu/mongo-data:/data/db
+      - assets:/data/db
     ports:
       - 27017:27017
     networks:
@@ -18,6 +18,8 @@ services:
       - db 
     networks:
       - spring_demo_net
+volumes:
+  assets:
 networks:
   spring_demo_net:
     driver: overlay
