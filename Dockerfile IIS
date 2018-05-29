@@ -1,0 +1,3 @@
+FROM microsoft/iis:nanoserver
+COPY hello.htm hello.htm
+RUN copy hello.htm c:\inetpub\wwwwroot
