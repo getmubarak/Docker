@@ -1,3 +1,5 @@
+docker build -t abc:v1 dir
+
 docker image ls 
 
 docker tag todo:0.0.1-SNAPSHOT getmub/todo:v1  
