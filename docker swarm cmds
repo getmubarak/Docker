@@ -25,3 +25,6 @@ docker service logs
 
 
 docker stack rm 
+
+
+https://training.play-with-docker.com/swarm-service-discovery/
