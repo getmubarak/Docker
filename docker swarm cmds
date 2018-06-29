@@ -17,6 +17,8 @@ docker service ls
 #The list of containers running within the service can be seen using 
 docker service ps <id>
 
+docker service ps --format 'table {{.ID}}\t{{.Name}}\t{{.Node}}\t{{.CurrentState}}' nginx
+
 #The service can now be scaled as
 docker service scale myapp_web=2
 
@@ -26,5 +28,10 @@ docker service logs
 
 docker stack rm 
 
+docker service inspect --format '{{json .Endpoint.VirtualIPs}}' nginx | jq '.'
+
 
 https://training.play-with-docker.com/swarm-service-discovery/
+
+operator reserves swarm wide ingress port 80 for myapp. Every node listens on 80. Container aware routing mesh can transparently 
+reroute traffic from worker3 to a node that is running container.
