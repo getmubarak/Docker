@@ -7,3 +7,9 @@ docker tag todo:0.0.1-SNAPSHOT getmub/todo:v1
 docker login
 
 docker push getmub/todo:v1 
+
+#Once the image is built, you can view all the layers that make up the image with the docker history command
+docker history <image>
+
+#To dig down into each layer of the image and view its contents you need to view the layers on the Docker host at:
+/var/lib/docker/aufs
