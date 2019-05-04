@@ -1,0 +1,46 @@
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo apt-get update
+sudo apt-get install docker-ce 
+
+# Important
+# Add your IP in subjectAltName in the openssl.cnf before generating # certs
+sudo vi /etc/ssl/openssl.cnf
+# Add this line
+#subjectAltName=IP:192.168.0.2
+mkdir -p /certs
+openssl req \
+  -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key \
+  -x509 -days 365 -out certs/domain.crt
+# Press enter to everything except CN add your ip address there
+Generating a 4096 bit RSA private key
+...............................................................................................................................................................................................................................++
+............................................................++
+writing new private key to 'certs/domain.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [AU]:
+State or Province Name (full name) [Some-State]:
+Locality Name (eg, city) []:
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:
+Organizational Unit Name (eg, section) []:
+Common Name (e.g. server FQDN or YOUR name) []:192.168.0.2
+Email Address []:
+
+
+sudo docker run -d -p 5000:5000 --restart=always --name registry \
+  -v /certs:/certs \
+  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \
+  -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \
+  registry:2
