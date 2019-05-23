@@ -12,3 +12,6 @@ Set Docker to start automatically at boot time:
 
 $ sudo systemctl enable docker.service
 Finally, start the Docker service:
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-centos-7
