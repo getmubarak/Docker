@@ -1,0 +1,14 @@
+$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+Configure the docker-ce repo:
+
+$ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+Install docker-ce:
+
+$ sudo yum install docker-ce
+Add your user to the docker group with the following command.
+
+$ sudo usermod -aG docker $(whoami)
+Set Docker to start automatically at boot time:
+
+$ sudo systemctl enable docker.service
+Finally, start the Docker service:
