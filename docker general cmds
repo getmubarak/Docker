@@ -1,5 +1,9 @@
 $docker ps
 $docker exec -it <containerid> /bin/bash
+
+stop and remove all containres
+$ docker container stop $(docker container ls -aq)
+
 $ docker pull ubuntu:14.04
 $ docker images
 
